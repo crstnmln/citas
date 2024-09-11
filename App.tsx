@@ -5,97 +5,51 @@
  * @format
  */
 
-import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import React, { useState } from "react";
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import { SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, useColorScheme, View, Button, Pressable, Modal } from "react-native";
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
+import Formulario from "./src/components/Formulario";
 
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-}
+// import {
+//   Colors,
+//   DebugInstructions,
+//   Header,
+//   LearnMoreLinks,
+//   ReloadInstructions,
+// } from 'react-native/Libraries/NewAppScreen';
 
-function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+const App = () => {
+    //los hooks se colocan en la parte superior
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
+    const [modalVisible, setModalVisible] = useState(false);
+    console.log("aqui inicia en ", modalVisible);
 
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-}
+    // const nuevaCitaHandler = () => {
+    //   console.log(`le diste click a nueva cita`)
+    // }
+    /* esto se comporta como un div */
+    return (
+        <SafeAreaView style={styles.container}>
+            <Text style={styles.title}>Rendez-vous pour ton animaux de compagnie</Text>
+            <Pressable
+                onPressOut={() => {
+                    setModalVisible(!modalVisible);
+                    console.log("aqui termina en ", modalVisible);
+                }}
+                style={styles.button1}
+            >
+                <Text style={styles.buttonText}>Prenez rendez-vous</Text>
+            </Pressable>
 
+            <Formulario modalVisible={modalVisible} 
+            setModalVisible={setModalVisible}
+            />
+        </SafeAreaView>
+    );
+};
+
+/*
 const styles = StyleSheet.create({
   sectionContainer: {
     marginTop: 32,
@@ -113,6 +67,32 @@ const styles = StyleSheet.create({
   highlight: {
     fontWeight: '700',
   },
+}); */
+
+const styles = StyleSheet.create({
+    container: {
+        backgroundColor: "#fff",
+        flex: 1,
+    },
+
+    title: {
+        textAlign: "center",
+        fontSize: 30,
+        color: "#33c8ff",
+        fontWeight: "bold",
+    },
+    button1: {
+        borderRadius: 5,
+        padding: 10,
+        backgroundColor: "#33c8ff",
+        marginHorizontal: 30,
+        marginTop: 20,
+    },
+    buttonText: {
+        textAlign: "center",
+        fontSize: 25,
+        color: "#fff",
+    },
 });
 
 export default App;

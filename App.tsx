@@ -23,6 +23,7 @@ const App = () => {
     //los hooks se colocan en la parte superior
 
     const [modalVisible, setModalVisible] = useState(false);
+    const [pacientes, setPacientes] = useState([])
     console.log("aqui inicia en ", modalVisible);
 
     // const nuevaCitaHandler = () => {
@@ -31,7 +32,8 @@ const App = () => {
     /* esto se comporta como un div */
     return (
         <SafeAreaView style={styles.container}>
-            <Text style={styles.title}>Rendez-vous pour ton animaux de compagnie</Text>
+            <View style={styles.mainBlock}>
+            <Text style={styles.title}>Prends ton rendez-vous pour ton animaux de compagnie</Text>
             <Pressable
                 onPressOut={() => {
                     setModalVisible(!modalVisible);
@@ -41,9 +43,12 @@ const App = () => {
             >
                 <Text style={styles.buttonText}>Prenez rendez-vous</Text>
             </Pressable>
-
-            <Formulario modalVisible={modalVisible} 
+            </View>
+            <Formulario 
+            modalVisible={modalVisible} 
             setModalVisible={setModalVisible}
+            pacientes={pacientes}
+            setPacientes={setPacientes}
             />
         </SafeAreaView>
     );
@@ -71,15 +76,23 @@ const styles = StyleSheet.create({
 
 const styles = StyleSheet.create({
     container: {
+        paddingTop: 30,
         backgroundColor: "#fff",
         flex: 1,
     },
 
+    mainBlock:{
+        flex: 1,
+        justifyContent:'center',
+   // alignItems: 'center'
+    },
+
     title: {
         textAlign: "center",
-        fontSize: 30,
+        fontSize: 25,
         color: "#33c8ff",
         fontWeight: "bold",
+        marginHorizontal: 30
     },
     button1: {
         borderRadius: 5,

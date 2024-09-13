@@ -1,13 +1,69 @@
 import React, { useState } from "react";
-import { Modal, Text, SafeAreaView, StyleSheet, Button, Pressable, ScrollView, TextInput, View } from "react-native";
+import { Modal, Text, SafeAreaView, StyleSheet, Button, Pressable, ScrollView, TextInput, View, Alert} from "react-native";
 import DatePicker from "react-native-date-picker";
 
-const Formulario = ({ modalVisible, setModalVisible }) => {
-    const [paciente, setPaciente] = useState("");
+const Formulario = ({ modalVisible, setModalVisible, pacientes, setPacientes }) => {
+    const [mascota, setMascota] = useState("");
     const [date, setDate] = useState(new Date());
     const [nombre, setNombre] = useState("");
     const [correo, setCorreo] = useState("");
     const [telefono, setTelefono] = useState("");
+    const [typeTT, setTypeTT] = useState("");
+    
+
+    const hanldeNewApp = () => {
+        if ([mascota, nombre, correo, telefono, typeTT, date].includes("")) {
+            
+            Alert.alert(
+                'Error',
+                'Todos los Campos son obligatorios',        
+                [{text: 'Ok' ,}, {text: 'Cancelar'}]
+                //title:'la juega', el primero es el de cancelar y el segundo es de ok
+                //  con tres el primero es recordar despues  luego cancelar y luego ok 
+
+                
+                )
+                return;
+        }
+
+        const pacienteAgendado = {
+
+            mascota,
+            nombre,
+            correo,
+            telefono,
+            date,
+            typeTT
+        }
+        
+//tarea hahahah logica inexistente 
+        // const verifPaciente = pacientes.findIndex(verificar => tel = pacienteAgendado.telefono)
+
+        // console.log(verifPaciente)
+
+        //if (verifPaciente >= 0) {}
+    
+    
+    
+        //console.log('presionaste esto') voy en el 96
+        Alert.alert('Mascota agregada')
+
+        setPacientes([...pacientes, pacienteAgendado]);
+        
+        setMascota('');
+        setCorreo('');
+        setDate(new Date());
+        setNombre('');
+        setTelefono('');
+        setTypeTT('');
+
+        Alert.alert('Mascota agregada')
+
+        //setModalVisible(!modalVisible);
+
+
+
+    };
 
     return (
         <Modal animationType="slide" visible={modalVisible}>
@@ -26,11 +82,11 @@ const Formulario = ({ modalVisible, setModalVisible }) => {
                                 </View>
                             </Pressable>
                         </View>
-                        <Text style={styles.titulo}>Remplir ton formulaire</Text>
+                        <Text style={styles.titulo}>REMPLIR FORMULAIRE</Text>
                     </View>
                     <View style={styles.contenedor}>
                         <Text style={styles.label}>Prenom de ton bebe</Text>
-                        <TextInput style={styles.input} value={paciente} onChangeText={setPaciente} />
+                        <TextInput style={styles.input} value={mascota} onChangeText={setMascota} />
                     </View>
 
                     <View style={styles.contenedor}>
@@ -57,13 +113,20 @@ const Formulario = ({ modalVisible, setModalVisible }) => {
                                 onDateChange={(date) => {
                                     setDate(date);
                                 }}
+                                locale="fr"
+                                // mode="date"
                             />
                         </View>
                     </View>
-
                     <View style={styles.contenedor}>
-                        <Text style={styles.label}>Toiletage a faire</Text>
-                        <TextInput style={styles.input} />
+                        <Text style={styles.label}>Type de toiletage</Text>
+                        <TextInput style={styles.input} value={typeTT} onChangeText={setTypeTT} />
+                    </View>
+
+                    <View>
+                        <Pressable style={styles.btnNewApp} onPress={hanldeNewApp}>
+                            <Text style={styles.btnNewAppText}>Confirmer</Text>
+                        </Pressable>
                     </View>
                 </ScrollView>
             </SafeAreaView>
@@ -75,6 +138,7 @@ const styles = StyleSheet.create({
     mainContainer: {
         backgroundColor: "#33c8ff",
         flex: 1,
+        paddingTop: 35,
     },
     viewCancel: {
         flexDirection: "row-reverse",
@@ -89,14 +153,13 @@ const styles = StyleSheet.create({
         width: 36,
         height: 36,
     },
-     btnCanceldiv:{
-
-        justifyContent:'center',
-    alignItems: 'center'
+    btnCanceldiv: {
+        justifyContent: "center",
+        alignItems: "center",
     },
     btnCancel: {
         color: "#fff",
-        //padding: 10, revisar si puedo agregar un padding vertical para alinearlo 
+        //padding: 10, revisar si puedo agregar un padding vertical para alinearlo
         fontSize: 25,
         fontWeight: "bold",
 
@@ -115,17 +178,35 @@ const styles = StyleSheet.create({
     },
     contenedor: {
         marginTop: 15,
-        marginHorizontal: 20,
+        marginHorizontal: 30,
     },
     label: {
         fontSize: 25,
         color: "#fff",
     },
     input: {
-        
         borderRadius: 5,
         padding: 10,
         backgroundColor: "#fff",
+    },
+    dateContenedor: {
+        color: "#fff",
+        dividerColor: "#33c8ff",
+        backgroundColor: "#fff",
+        alignItems: "center",
+        borderRadius: 5,
+    },
+    btnNewApp: {
+        marginVertical: 50,
+        backgroundColor: "#f59e0b",
+        paddingVertical: 15,
+        marginHorizontal: 30,
+        borderRadius: 5,
+    },
+    btnNewAppText: {
+        textAlign: "center",
+        fontSize: 25,
+        color: "#fff",
     },
 });
 

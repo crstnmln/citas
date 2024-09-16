@@ -36,18 +36,21 @@ const Formulario = ({ modalVisible, setModalVisible, pacientes, setPacientes }) 
             typeTT
         }
         
-//tarea hahahah logica inexistente 
-        // const verifPaciente = pacientes.findIndex(verificar => tel = pacienteAgendado.telefono)
-
-        // console.log(verifPaciente)
-
-        //if (verifPaciente >= 0) {}
+        //tarea hahahah logica inexistente 
+         const verifPaciente = (arreglo) => {
+            arreglo.forEach(mascota => {
+            if (mascota.telefono === pacienteAgendado.telefono) {
+                console.log(`esta es la que esta en el arreglo: ${mascota.nombre} y esta es la que esta en el paciente que recien agrego: ${pacienteAgendado.nombre}`)
+                ;
+            }
+            return
+        });
     
-    
+         }
     
         //console.log('presionaste esto') voy en el 96
         Alert.alert('Mascota agregada')
-
+        verifPaciente(pacientes);
         setPacientes([...pacientes, pacienteAgendado]);
         
         setMascota('');

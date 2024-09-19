@@ -24,7 +24,7 @@ const App = () => {
 
     const [modalVisible, setModalVisible] = useState(false);
     const [pacientes, setPacientes] = useState([])
-    console.log("aqui inicia en ", modalVisible);
+    //console.log("aqui inicia en ", modalVisible);
 
     // const nuevaCitaHandler = () => {
     //   console.log(`le diste click a nueva cita`)
@@ -37,7 +37,7 @@ const App = () => {
             <Pressable
                 onPressOut={() => {
                     setModalVisible(!modalVisible);
-                    console.log("aqui termina en ", modalVisible);
+                    //console.log("aqui termina en ", modalVisible);
                 }}
                 style={styles.button1}
             >

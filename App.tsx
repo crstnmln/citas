@@ -5,86 +5,89 @@
  * @format
  */
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-import { SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, useColorScheme, View, Button, Pressable, Modal } from "react-native";
+import { SafeAreaView, StyleSheet, Text, View, Pressable, FlatList, FlexStyle } from "react-native";
 
 import Formulario from "./src/components/Formulario";
-
-// import {
-//   Colors,
-//   DebugInstructions,
-//   Header,
-//   LearnMoreLinks,
-//   ReloadInstructions,
-// } from 'react-native/Libraries/NewAppScreen';
+import Paciente from "./src/components/Pacientes";
 
 const App = () => {
     //los hooks se colocan en la parte superior
 
     const [modalVisible, setModalVisible] = useState(false);
-    const [pacientes, setPacientes] = useState([])
+    const [pacientes, setPacientes] = useState([]);
+    const [changeValue, setChangeValue] = useState<FlexStyle['justifyContent']>('center');
     //console.log("aqui inicia en ", modalVisible);
+    let verficado;
 
     // const nuevaCitaHandler = () => {
     //   console.log(`le diste click a nueva cita`)
     // }
-    /* esto se comporta como un div */
+    // esto se comporta como un div
+
+    // if (pacientes.length === 0) {
+    //  console.log(styles.mainBlock.)
+    //  }
+
+    useEffect(() => {
+        if (pacientes.length !== 0) {
+            setChangeValue("flex-start");
+        } else {
+            setChangeValue("center");
+        }
+    }, [pacientes]);
+
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={(verficado = [styles.mainBlock, { justifyContent: changeValue }])}>
+            {/* <View style={[styles.mainBlock, { justifyContent: changeValue }]}>   { ...styles.container, justifyContent: changeValue } */}
             <View style={styles.mainBlock}>
-            <Text style={styles.title}>Prends ton rendez-vous pour ton animaux de compagnie</Text>
-            <Pressable
-                onPressOut={() => {
-                    setModalVisible(!modalVisible);
-                    //console.log("aqui termina en ", modalVisible);
-                }}
-                style={styles.button1}
-            >
-                <Text style={styles.buttonText}>Prenez rendez-vous</Text>
-            </Pressable>
+                <Text style={styles.title}>Prends ton rendez-vous pour ton animaux de compagnie</Text>
+                <Pressable
+                    onPressOut={() => {
+                        setModalVisible(!modalVisible);
+                        //console.log("aqui termina en ", modalVisible);
+                    }}
+                    style={styles.button1}
+                >
+                    <Text style={styles.buttonText}>Prenez rendez-vous</Text>
+                </Pressable>
             </View>
-            <Formulario 
-            modalVisible={modalVisible} 
-            setModalVisible={setModalVisible}
-            pacientes={pacientes}
-            setPacientes={setPacientes}
-            />
+
+            {pacientes.length !== 0 ? (
+                (console.log(styles.container, changeValue),
+                (
+                    <FlatList
+                        data={pacientes}
+                        keyExtractor={(item) => item.id}
+                        renderItem={() => {
+                            return <Paciente />;
+                        }}
+                    />
+                ))
+            ) : (
+                <Text> No hay pacientes </Text>
+
+                // <Text>No hay pacientes </Text>
+            )}
+
+            <Formulario modalVisible={modalVisible} setModalVisible={setModalVisible} pacientes={pacientes} setPacientes={setPacientes} />
         </SafeAreaView>
     );
 };
-
-/*
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-}); */
 
 const styles = StyleSheet.create({
     container: {
         paddingTop: 30,
         backgroundColor: "#fff",
         flex: 1,
+        //justifyContent: changeValue
     },
 
-    mainBlock:{
-        flex: 1,
-        justifyContent:'center',
-   // alignItems: 'center'
+    mainBlock: {
+        // flex: 1,
+        // justifyContent: changeValue
+        // alignItems: 'center'
     },
 
     title: {
@@ -92,7 +95,7 @@ const styles = StyleSheet.create({
         fontSize: 25,
         color: "#33c8ff",
         fontWeight: "bold",
-        marginHorizontal: 30
+        marginHorizontal: 30,
     },
     button1: {
         borderRadius: 5,

@@ -28,7 +28,7 @@ const Formulario = ({ modalVisible, setModalVisible, pacientes, setPacientes }) 
         }
 
         const pacienteAgendado = {
-
+            id: Date.now(),
             mascota,
             nombre,
             correo,
@@ -67,28 +67,7 @@ const Formulario = ({ modalVisible, setModalVisible, pacientes, setPacientes }) 
         setModalVisible(!modalVisible);
 
          
-        // const verifPaciente = (arreglo) => {
-        //     const existePaciente = arreglo.some((objeto) => {
-        //         objeto.telefono == pacienteAgendado.telefono && objeto.mascota == pacienteAgendado.mascota;
-        //     });
-
-        //     if (existePaciente) {
-        //         Alert.alert("Huevon esta mascota ya la agrego");
-        //         console.log(`mascota duplicada: ${objeto.mascota} telefono: ${objeto.telefono} `);
-        //     } else {
-        //         setPacientes([...pacientes, pacienteAgendado]);
-        //         setMascota("");
-        //         setCorreo("");
-        //         setDate(new Date());
-        //         setNombre("");
-        //         setTelefono("");
-        //         setTypeTT("");
-        //         Alert.alert("Mascota agregada");
-        //         setModalVisible(!modalVisible);
-        //     }
-        // };
-
-        // verifPaciente(pacientes);
+       
 
     };
 
@@ -141,6 +120,10 @@ const Formulario = ({ modalVisible, setModalVisible, pacientes, setPacientes }) 
                                     setDate(date);
                                 }}
                                 locale="fr"
+                                mode='datetime'
+                                dividerColor = '#33c8ff'
+                               // theme='auto'
+                                //minimumDate='new Date("2024-01-01")'
                                 // mode="date"
                             />
                         </View>

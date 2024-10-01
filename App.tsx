@@ -19,7 +19,7 @@ const App = () => {
     const [pacientes, setPacientes] = useState([]);
     const [changeValue, setChangeValue] = useState<FlexStyle['justifyContent']>('center');
     //console.log("aqui inicia en ", modalVisible);
-    let verficado;
+    
 
     // const nuevaCitaHandler = () => {
     //   console.log(`le diste click a nueva cita`)
@@ -32,14 +32,16 @@ const App = () => {
 
     useEffect(() => {
         if (pacientes.length !== 0) {
+            console.log(pacientes)
             setChangeValue("flex-start");
         } else {
+            console.log(pacientes)
             setChangeValue("center");
         }
     }, [pacientes]);
 
     return (
-        <SafeAreaView style={(verficado = [styles.mainBlock, { justifyContent: changeValue }])}>
+        <SafeAreaView style={[styles.container, { justifyContent: changeValue }]}>
             {/* <View style={[styles.mainBlock, { justifyContent: changeValue }]}>   { ...styles.container, justifyContent: changeValue } */}
             <View style={styles.mainBlock}>
                 <Text style={styles.title}>Prends ton rendez-vous pour ton animaux de compagnie</Text>
@@ -112,3 +114,4 @@ const styles = StyleSheet.create({
 });
 
 export default App;
+

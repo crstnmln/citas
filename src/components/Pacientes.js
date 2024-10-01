@@ -6,7 +6,7 @@ const Paciente = () => {
 return (
     <Text>Desde paciente</Text>
 )
-
+// test
 
 }
 

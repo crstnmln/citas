@@ -27,7 +27,7 @@ const Formulario = ({ modalVisible, setModalVisible, pacientes, setPacientes }) 
         }
 
         const pacienteAgendado = {
-
+            id: Date.now(),
             mascota,
             nombre,
             correo,
@@ -37,20 +37,21 @@ const Formulario = ({ modalVisible, setModalVisible, pacientes, setPacientes }) 
         }
         
         //tarea hahahah logica inexistente 
-         const verifPaciente = (arreglo) => {
-            arreglo.forEach(mascota => {
-            if (mascota.telefono === pacienteAgendado.telefono) {
-                console.log(`esta es la que esta en el arreglo: ${mascota.nombre} y esta es la que esta en el paciente que recien agrego: ${pacienteAgendado.nombre}`)
-                ;
+        const verifPaciente = (arreglo) => {
+            arreglo.forEach(objeto => {
+            if (objeto.telefono === pacienteAgendado.telefono && objeto.mascota === pacienteAgendado.mascota) {
+                console.log(`esta es la que esta en el arreglo: propietario=${objeto.nombre} nombre de mascota= ${objeto.mascota}  \n y esta es la que esta en el paciente que recien agrego: propietario=${pacienteAgendado.nombre} nombre de mascota= ${pacienteAgendado.mascota} `);
+            }else{
+                console.log(`paciente agregado sin duplicar`);
             }
-            return
+            
         });
     
          }
-    
+         verifPaciente(pacientes);
         //console.log('presionaste esto') voy en el 96
         Alert.alert('Mascota agregada')
-        verifPaciente(pacientes);
+        
         setPacientes([...pacientes, pacienteAgendado]);
         
         setMascota('');
@@ -60,11 +61,12 @@ const Formulario = ({ modalVisible, setModalVisible, pacientes, setPacientes }) 
         setTelefono('');
         setTypeTT('');
 
-        Alert.alert('Mascota agregada')
+        
 
-        //setModalVisible(!modalVisible);
+        setModalVisible(!modalVisible);
 
-
+         
+       
 
     };
 
@@ -117,6 +119,10 @@ const Formulario = ({ modalVisible, setModalVisible, pacientes, setPacientes }) 
                                     setDate(date);
                                 }}
                                 locale="fr"
+                                mode='datetime'
+                                dividerColor = '#33c8ff'
+                               // theme='auto'
+                                //minimumDate='new Date("2024-01-01")'
                                 // mode="date"
                             />
                         </View>

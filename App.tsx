@@ -19,7 +19,7 @@ const App = () => {
     const [pacientes, setPacientes] = useState([]);
     const [changeValue, setChangeValue] = useState<FlexStyle['justifyContent']>('center');
     //console.log("aqui inicia en ", modalVisible);
-    
+
 
     // const nuevaCitaHandler = () => {
     //   console.log(`le diste click a nueva cita`)
@@ -48,7 +48,7 @@ const App = () => {
                 <Pressable
                     onPressOut={() => {
                         setModalVisible(!modalVisible);
-                        //console.log("aqui termina en ", modalVisible);
+
                     }}
                     style={styles.button1}
                 >
@@ -58,15 +58,15 @@ const App = () => {
 
             {pacientes.length !== 0 ? (
                 (console.log(styles.container, changeValue),
-                (
-                    <FlatList
-                        data={pacientes}
-                        keyExtractor={(item) => item.id}
-                        renderItem={() => {
-                            return <Paciente />;
-                        }}
-                    />
-                ))
+                    (
+                        <FlatList
+                            data={pacientes}
+                            keyExtractor={(item) => item.id}
+                            renderItem={() => {
+                                return <Paciente />;
+                            }}
+                        />
+                    ))
             ) : (
                 <Text> No hay pacientes </Text>
 

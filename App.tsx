@@ -48,7 +48,7 @@ const App = () => {
                 <Pressable
                     onPressOut={() => {
                         setModalVisible(!modalVisible);
-
+                        //console.log("aqui termina en ", modalVisible);
                     }}
                     style={styles.button1}
                 >
@@ -62,8 +62,12 @@ const App = () => {
                         <FlatList
                             data={pacientes}
                             keyExtractor={(item) => item.id}
-                            renderItem={() => {
-                                return <Paciente />;
+                            renderItem={({ item }) => {
+                                return <Paciente
+
+                                    item={item}
+
+                                />;
                             }}
                         />
                     ))
@@ -114,4 +118,3 @@ const styles = StyleSheet.create({
 });
 
 export default App;
-

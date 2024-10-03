@@ -119,7 +119,7 @@ const Formulario = ({ modalVisible, setModalVisible, pacientes, setPacientes }) 
                                     setDate(date);
                                 }}
                                 locale="fr"
-                                mode='datetime'
+                                mode='date'
                                 dividerColor='#33c8ff'
                             // theme='auto'
                             //minimumDate='new Date("2024-01-01")'

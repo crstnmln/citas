@@ -57,9 +57,10 @@ const App = () => {
             </View>
 
             {pacientes.length !== 0 ? (
-                (console.log(styles.container, changeValue),
+                (
                     (
                         <FlatList
+                            style={styles.lista}
                             data={pacientes}
                             keyExtractor={(item) => item.id}
                             renderItem={({ item }) => {
@@ -99,14 +100,14 @@ const styles = StyleSheet.create({
     title: {
         textAlign: "center",
         fontSize: 25,
-        color: "#33c8ff",
+        color: "#1a999f",
         fontWeight: "bold",
         marginHorizontal: 30,
     },
     button1: {
         borderRadius: 5,
         padding: 10,
-        backgroundColor: "#33c8ff",
+        backgroundColor: "#1a999f",
         marginHorizontal: 30,
         marginTop: 20,
     },
@@ -115,6 +116,10 @@ const styles = StyleSheet.create({
         fontSize: 25,
         color: "#fff",
     },
+    lista: {
+    marginTop: 20,
+}
+
 });
 
 export default App;

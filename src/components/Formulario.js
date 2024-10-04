@@ -120,7 +120,7 @@ const Formulario = ({ modalVisible, setModalVisible, pacientes, setPacientes }) 
                                 }}
                                 locale="fr"
                                 mode='date'
-                                dividerColor='#33c8ff'
+                                dividerColor='#1a999f'
                             // theme='auto'
                             //minimumDate='new Date("2024-01-01")'
                             // mode="date"
@@ -145,7 +145,7 @@ const Formulario = ({ modalVisible, setModalVisible, pacientes, setPacientes }) 
 
 const styles = StyleSheet.create({
     mainContainer: {
-        backgroundColor: "#33c8ff",
+        backgroundColor: "#1a999f",
         flex: 1,
         paddingTop: 35,
     },
@@ -200,7 +200,7 @@ const styles = StyleSheet.create({
     },
     dateContenedor: {
         color: "#fff",
-        dividerColor: "#33c8ff",
+        dividerColor: "#1a999f",
         backgroundColor: "#fff",
         alignItems: "center",
         borderRadius: 5,

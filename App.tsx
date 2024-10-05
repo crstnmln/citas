@@ -17,10 +17,17 @@ const App = () => {
 
     const [modalVisible, setModalVisible] = useState(false);
     const [pacientes, setPacientes] = useState([]);
+    const [paciente, setPaciente] = useState({});
     const [changeValue, setChangeValue] = useState<FlexStyle['justifyContent']>('center');
     //console.log("aqui inicia en ", modalVisible);
 
+    const pacienteEditar = id => {
 
+        const pacienteEditar = pacientes.filter(paciente => paciente.id === id)
+        setPaciente(pacienteEditar[0])
+
+
+    }
     // const nuevaCitaHandler = () => {
     //   console.log(`le diste click a nueva cita`)
     // }
@@ -67,7 +74,8 @@ const App = () => {
                                 return <Paciente
 
                                     item={item}
-
+                                    setModalVisible={setModalVisible}
+                                    pacienteEditar={pacienteEditar}
                                 />;
                             }}
                         />
@@ -117,8 +125,8 @@ const styles = StyleSheet.create({
         color: "#fff",
     },
     lista: {
-    marginTop: 20,
-}
+        marginTop: 20,
+    }
 
 });
 

@@ -61,11 +61,12 @@ const App = () => {
                 >
                     <Text style={styles.buttonText}>Prenez rendez-vous</Text>
                 </Pressable>
-            </View>
+            </View>  
+
 
             {pacientes.length !== 0 ? (
-                (
-                    (
+                
+                    
                         <FlatList
                             style={styles.lista}
                             data={pacientes}
@@ -79,12 +80,10 @@ const App = () => {
                                 />;
                             }}
                         />
-                    ))
+                    
             ) : (
-                <Text> No hay pacientes </Text>
-
-                // <Text>No hay pacientes </Text>
-            )}
+                <></>
+            )}  
 
             <Formulario modalVisible={modalVisible} setModalVisible={setModalVisible} pacientes={pacientes} setPacientes={setPacientes} />
         </SafeAreaView>

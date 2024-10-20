@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Modal, Text, SafeAreaView, StyleSheet, Button, Pressable, ScrollView, TextInput, View, Alert } from "react-native";
 import DatePicker from "react-native-date-picker";
 
-const Formulario = ({ modalVisible, setModalVisible, pacientes, setPacientes }) => {
+const Formulario = ({ modalVisible, setModalVisible, pacientes, setPacientes, paciente }) => {
     const [mascota, setMascota] = useState("");
     const [date, setDate] = useState(new Date());
     const [nombre, setNombre] = useState("");

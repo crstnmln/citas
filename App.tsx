@@ -18,16 +18,14 @@ const App = () => {
     const [modalVisible, setModalVisible] = useState(false);
     const [pacientes, setPacientes] = useState([]);
     const [paciente, setPaciente] = useState({});
-    const [changeValue, setChangeValue] = useState<FlexStyle['justifyContent']>('center');
+    const [changeValue, setChangeValue] = useState<FlexStyle["justifyContent"]>("center");
+
     //console.log("aqui inicia en ", modalVisible);
 
-    const pacienteEditar = id => {
-
-        const pacienteEditar = pacientes.filter(paciente => paciente.id === id)
-        setPaciente(pacienteEditar[0])
-
-
-    }
+    const pacienteEditar = (id) => {
+        const pacienteEditar = pacientes.filter((paciente) => paciente.id === id);
+        setPaciente(pacienteEditar[0]);
+    };
     // const nuevaCitaHandler = () => {
     //   console.log(`le diste click a nueva cita`)
     // }
@@ -39,10 +37,10 @@ const App = () => {
 
     useEffect(() => {
         if (pacientes.length !== 0) {
-            console.log(pacientes)
+            console.log(pacientes);
             setChangeValue("flex-start");
         } else {
-            console.log(pacientes)
+            console.log(pacientes);
             setChangeValue("center");
         }
     }, [pacientes]);
@@ -64,29 +62,26 @@ const App = () => {
             </View>
 
             {pacientes.length !== 0 ? (
-                (
-                    (
-                        <FlatList
-                            style={styles.lista}
-                            data={pacientes}
-                            keyExtractor={(item) => item.id}
-                            renderItem={({ item }) => {
-                                return <Paciente
-
-                                    item={item}
-                                    setModalVisible={setModalVisible}
-                                    pacienteEditar={pacienteEditar}
-                                />;
-                            }}
-                        />
-                    ))
+                <FlatList
+                    style={styles.lista}
+                    data={pacientes}
+                    keyExtractor={(item) => item.id}
+                    renderItem={({ item }) => {
+                        return <Paciente item={item} setModalVisible={setModalVisible} pacienteEditar={pacienteEditar} />;
+                    }}
+                />
             ) : (
                 <Text> No hay pacientes </Text>
 
                 // <Text>No hay pacientes </Text>
             )}
 
-            <Formulario modalVisible={modalVisible} setModalVisible={setModalVisible} pacientes={pacientes} setPacientes={setPacientes} />
+            <Formulario 
+            modalVisible={modalVisible} 
+            setModalVisible={setModalVisible} 
+            pacientes={pacientes} 
+            setPacientes={setPacientes} 
+            paciente={paciente}/>
         </SafeAreaView>
     );
 };
@@ -126,8 +121,7 @@ const styles = StyleSheet.create({
     },
     lista: {
         marginTop: 20,
-    }
-
+    },
 });
 
 export default App;

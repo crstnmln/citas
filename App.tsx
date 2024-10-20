@@ -59,22 +59,29 @@ const App = () => {
                 >
                     <Text style={styles.buttonText}>Prenez rendez-vous</Text>
                 </Pressable>
-            </View>
+            </View>  
+
 
             {pacientes.length !== 0 ? (
-                <FlatList
-                    style={styles.lista}
-                    data={pacientes}
-                    keyExtractor={(item) => item.id}
-                    renderItem={({ item }) => {
-                        return <Paciente item={item} setModalVisible={setModalVisible} pacienteEditar={pacienteEditar} />;
-                    }}
-                />
-            ) : (
-                <Text> No hay pacientes </Text>
+                (
+                    (
+                        <FlatList
+                            style={styles.lista}
+                            data={pacientes}
+                            keyExtractor={(item) => item.id}
+                            renderItem={({ item }) => {
+                                return <Paciente
 
-                // <Text>No hay pacientes </Text>
-            )}
+                                    item={item}
+                                    setModalVisible={setModalVisible}
+                                    pacienteEditar={pacienteEditar}
+                                />;
+                            }}
+                        />
+                    ))
+            ) : (
+                <></>
+            )}  
 
             <Formulario 
             modalVisible={modalVisible} 

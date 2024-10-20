@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
         //  alignSelf:'flex-end',
 
         borderRadius: 20,
-        backgroundColor: "#99e1fc",
+        backgroundColor: "#f59e0b",
         marginRight: 30,
         width: 36,
         height: 36,

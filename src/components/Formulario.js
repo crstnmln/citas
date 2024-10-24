@@ -17,7 +17,7 @@ const Formulario = ({ modalVisible, setModalVisible, pacientes, setPacientes, pa
             Alert.alert(
                 'Error',
                 'Todos los Campos son obligatorios',
-                [{ text: 'Ok', }, { text: 'Cancelar' }]
+                [{ text: 'OK', }]
                 //title:'la juega', el primero es el de cancelar y el segundo es de ok
                 //  con tres el primero es recordar despues  luego cancelar y luego ok 
 
@@ -40,7 +40,17 @@ const Formulario = ({ modalVisible, setModalVisible, pacientes, setPacientes, pa
         const verifPaciente = (arreglo) => {
             arreglo.forEach(objeto => {
                 if (objeto.telefono === pacienteAgendado.telefono && objeto.mascota === pacienteAgendado.mascota) {
+
+                    Alert.alert(
+                        'Error',
+                        'Paciente ya agendado!',
+                        [{ text: 'OK', }]
+                        //title:'la juega', el primero es el de cancelar y el segundo es de ok
+                        //  con tres el primero es recordar despues  luego cancelar y luego ok 
+                        
+                    );
                     console.log(`esta es la que esta en el arreglo: propietario=${objeto.nombre} nombre de mascota= ${objeto.mascota}  \n y esta es la que esta en el paciente que recien agrego: propietario=${pacienteAgendado.nombre} nombre de mascota= ${pacienteAgendado.mascota} `);
+                    return;
                 } else {
                     console.log(`paciente agregado sin duplicar`);
                 }

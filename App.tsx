@@ -22,7 +22,7 @@ const App = () => {
 
     //console.log("aqui inicia en ", modalVisible);
 
-    const pacienteEditar = (id) => {
+    const pacienteEditar = (id: number) => {
         const pacienteEditar = pacientes.filter((paciente) => paciente.id === id);
         setPaciente(pacienteEditar[0]);
     };

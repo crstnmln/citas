@@ -40,7 +40,7 @@ const Formulario = ({ modalVisible, setModalVisible, pacientes, setPacientes, pa
         }
 
         const pacienteAgendado = {
-            id: Date.now(),
+            // id: Date.now(),
             mascota,
             nombre,
             correo,
@@ -51,6 +51,16 @@ const Formulario = ({ modalVisible, setModalVisible, pacientes, setPacientes, pa
 
         if (id) {
             pacienteAgendado.id = id;
+
+            const pacientesActualizados = pacientes.map( pacienteState  => 
+                pacienteState.id === pacienteAgendado.id ? pacienteAgendado :
+                pacienteState                  
+            )
+
+            // console.log( 'este es el objeto que estoy editando')
+            // console.log(pacientesActualizados)
+
+            //     return 
 
 
         } else {

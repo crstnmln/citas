@@ -24,6 +24,7 @@ const App = () => {
 
     const pacienteEditar = (id: number) => {
         const pacienteEditar = pacientes.filter((paciente) => paciente.id === id);
+        console.log(paciente);
         setPaciente(pacienteEditar[0]);
     };
     // const nuevaCitaHandler = () => {
@@ -53,42 +54,33 @@ const App = () => {
                 <Pressable
                     onPressOut={() => {
                         setModalVisible(!modalVisible);
-                        //console.log("aqui termina en ", modalVisible);
+                        console.log('auxilio');
                     }}
                     style={styles.button1}
                 >
                     <Text style={styles.buttonText}>Prenez rendez-vous</Text>
                 </Pressable>
-            </View>  
-
+            </View>
 
             {pacientes.length !== 0 ? (
-                (
-                    (
-                        <FlatList
-                            style={styles.lista}
-                            data={pacientes}
-                            keyExtractor={(item) => item.id}
-                            renderItem={({ item }) => {
-                                return <Paciente
-
-                                    item={item}
-                                    setModalVisible={setModalVisible}
-                                    pacienteEditar={pacienteEditar}
-                                />;
-                            }}
-                        />
-                    ))
+                <FlatList
+                    style={styles.lista}
+                    data={pacientes}
+                    keyExtractor={(item) => item.id}
+                    renderItem={({ item }) => {
+                        return <Paciente item={item} setModalVisible={setModalVisible} pacienteEditar={pacienteEditar} />;
+                    }}
+                />
             ) : (
                 <></>
-            )}  
+            )}
 
             <Formulario 
             modalVisible={modalVisible} 
             setModalVisible={setModalVisible} 
             pacientes={pacientes} 
             setPacientes={setPacientes} 
-            paciente={paciente}/>
+            paciente={paciente} />
         </SafeAreaView>
     );
 };

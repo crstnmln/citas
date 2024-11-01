@@ -1,28 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import { Modal, Text, SafeAreaView, StyleSheet, Button, Pressable, ScrollView, TextInput, View, Alert } from "react-native";
 import DatePicker from "react-native-date-picker";
 
-const Formulario = ({ modalVisible, setModalVisible, pacientes, setPacientes, paciente }) => {
+const Formulario = ({ modalVisible, setModalVisible, pacientes, setPacientes, paciente: pacienteObj }) => {
     const [mascota, setMascota] = useState("");
+    const [id, setId] = useState("");
     const [date, setDate] = useState(new Date());
     const [nombre, setNombre] = useState("");
     const [correo, setCorreo] = useState("");
     const [telefono, setTelefono] = useState("");
     const [typeTT, setTypeTT] = useState("");
 
+    useEffect(() => {
+        if (Object.keys(pacienteObj).length > 0) {
+            setMascota(pacienteObj.mascota);
+            setId(pacienteObj.id);
+            setDate(pacienteObj.date);
+            setNombre(pacienteObj.nombre);
+            setCorreo(pacienteObj.correo);
+            setTelefono(pacienteObj.telefono);
+            setTypeTT(pacienteObj.typeTT);
+
+            console.log("si hay algo");
+        } else {
+            console.log("no hay algo");
+        }
+    }, []);
 
     const hanldeNewApp = () => {
         if ([mascota, nombre, correo, telefono, typeTT, date].includes("")) {
-
             Alert.alert(
-                'Error',
-                'Todos los Campos son obligatorios',
-                [{ text: 'OK', }]
+                "Error",
+                "Todos los Campos son obligatorios",
+                [{ text: "OK" }]
                 //title:'la juega', el primero es el de cancelar y el segundo es de ok
-                //  con tres el primero es recordar despues  luego cancelar y luego ok 
-
-
-            )
+                //  con tres el primero es recordar despues  luego cancelar y luego ok
+            );
             return;
         }
 
@@ -33,52 +46,63 @@ const Formulario = ({ modalVisible, setModalVisible, pacientes, setPacientes, pa
             correo,
             telefono,
             date,
-            typeTT
+            typeTT,
+        };
+
+        if (id) {
+            pacienteAgendado.id = id;
+
+
+        } else {
+            pacienteAgendado.id = Date.now();
+            setPacientes([...pacientes, pacienteAgendado]);
+            setModalVisible(!modalVisible);
         }
 
-        //tarea hahahah logica inexistente 
-        const verifPaciente = (arreglo) => {
-            arreglo.forEach(objeto => {
-                if (objeto.telefono === pacienteAgendado.telefono && objeto.mascota === pacienteAgendado.mascota) {
 
-                    Alert.alert(
-                        'Error',
-                        'Paciente ya agendado!',
-                        [{ text: 'OK', }]
-                        //title:'la juega', el primero es el de cancelar y el segundo es de ok
-                        //  con tres el primero es recordar despues  luego cancelar y luego ok 
-                        
-                    );
-                    console.log(`esta es la que esta en el arreglo: propietario=${objeto.nombre} nombre de mascota= ${objeto.mascota}  \n y esta es la que esta en el paciente que recien agrego: propietario=${pacienteAgendado.nombre} nombre de mascota= ${pacienteAgendado.mascota} `);
-                    return;
-                } else {
-                    console.log(`paciente agregado sin duplicar`);
-                }
-
-            });
-
-        }
-        verifPaciente(pacientes);
-        //console.log('presionaste esto') voy en el 96
-        Alert.alert('Mascota agregada')
+        Alert.alert("Mascota agregada");
 
         setPacientes([...pacientes, pacienteAgendado]);
-
-        setMascota('');
-        setCorreo('');
-        setDate(new Date());
-        setNombre('');
-        setTelefono('');
-        setTypeTT('');
-
-
-
         setModalVisible(!modalVisible);
 
-
-
+        setMascota("");
+        setCorreo("");
+        setDate(new Date());
+        setNombre("");
+        setTelefono("");
+        setTypeTT("");
 
     };
+
+
+    //tarea hahahah logica inexistente
+    // const verifPaciente = (arreglo) => {
+    //     arreglo.forEach(objeto => {
+    //         if (objeto.telefono === pacienteAgendado.telefono && objeto.mascota === pacienteAgendado.mascota) {
+
+    //             Alert.alert(
+    //                 'Error',
+    //                 'Paciente ya agendado!',
+    //                 [{ text: 'OK', }]
+    //                 //title:'la juega', el primero es el de cancelar y el segundo es de ok
+    //                 //  con tres el primero es recordar despues  luego cancelar y luego ok
+
+    //             );
+    //             console.log(`esta es la que esta en el arreglo: propietario=${objeto.nombre} nombre de mascota= ${objeto.mascota}  \n y esta es la que esta en el paciente que recien agrego: propietario=${pacienteAgendado.nombre} nombre de mascota= ${pacienteAgendado.mascota} `);
+    //             return;
+    //         } else {
+    //             console.log(`paciente agregado sin duplicar`);
+    //         }
+
+    //     });
+
+    // }
+    // verifPaciente(pacientes);
+
+
+
+
+
 
     return (
         <Modal animationType="slide" visible={modalVisible}>
@@ -129,8 +153,8 @@ const Formulario = ({ modalVisible, setModalVisible, pacientes, setPacientes, pa
                                     setDate(date);
                                 }}
                                 locale="fr"
-                                mode='date'
-                                dividerColor='#1a999f'
+                                mode="date"
+                                dividerColor="#1a999f"
                             // theme='auto'
                             //minimumDate='new Date("2024-01-01")'
                             // mode="date"

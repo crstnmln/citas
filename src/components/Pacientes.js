@@ -32,7 +32,7 @@ const Paciente = ({ item, setModalVisible, pacienteEditar}) => {
 
                 <Pressable
                     style={[styles.btn , styles.edit ]}
-                    onPress={() => {
+                    onLongPress={() => {
                         pacienteEditar(id)    
                         setModalVisible (true)}
                     
